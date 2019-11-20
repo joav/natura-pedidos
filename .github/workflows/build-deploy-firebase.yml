@@ -5,16 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ '10', '8' ]
-    name: Node ${{ matrix.node }} sample
+    name: Build angular
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
         uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
       - name: Install Dependencies
         run: npm install
       - name: Build
@@ -24,7 +19,7 @@ jobs:
         with:
           name: dist
           path: dist
-      
+
   deploy:
     name: Deploy
     needs: build
