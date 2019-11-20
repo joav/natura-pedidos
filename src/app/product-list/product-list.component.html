@@ -1,18 +1,17 @@
+<h3>Lista de productos{{(withCustomer?' de '+cService.currentCustomer.name:'')}}</h3>
 <table>
   <thead>
-    <td>Código</td>
-    <td>Descripción</td>
+    <td>Cliente</td>
+    <td>Producto</td>
     <td>Precio</td>
     <td>Puntos</td>
-    <td>Cliente</td>
   </thead>
   <tbody>
     <tr *ngFor="let product of pService.filter()">
-      <td class="code">{{product.code}}</td>
-      <td class="desc">{{product.desc}}</td>
+      <td class="customer">{{product.customer.name}}</td>
+      <td class="code">{{product.code}}<br>{{product.desc}}</td>
       <td class="price">{{product.price}}</td>
       <td class="price">{{product.points}}</td>
-      <td class="customer">{{product.customer.name}}</td>
     </tr>
   </tbody>
   <tfoot>
@@ -21,3 +20,4 @@
     <td>{{pService.totalPoints()}}</td>
   </tfoot>
 </table>
+<div class="btn" (click)="clear()">Limpiar lista{{(withCustomer?' de: '+cService.currentCustomer.name:'')}}</div>

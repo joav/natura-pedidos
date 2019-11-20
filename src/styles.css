@@ -15,11 +15,13 @@ div.btn {
   border: 0.5px solid black;
   cursor: pointer;
   box-sizing: border-box;
+  border-radius: 5px;
+  margin: 3px 0;
 }
 input {
   display: block;
   width: 100%;
-  margin: 20px 0;
+  margin: 10px 0;
   box-sizing: border-box;
 }
 h3 {

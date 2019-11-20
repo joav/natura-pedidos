@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, forkJoin } from "rxjs";
 import { CustomersService } from "./customers.service";
 import { ProductService } from "./product.service";
 import { Customer } from "./models/customer";
@@ -46,13 +46,27 @@ export class DbService {
       ["customers", "products"],
       "readwrite"
     );
-    const reqC = transaction.objectStore("customers").getAll();
+    const reqC = transaction.objectStore("customers").openCursor();
     reqC.onsuccess = () => {
-      this.cService.customers = reqC.result;
+      let cursor = reqC.result;
+      if(cursor){
+        this.cService.add({
+          id: cursor.primaryKey,
+          ...cursor.value
+        })
+        cursor.continue();
+      }
     };
-    const reqP = transaction.objectStore("products").getAll();
+    const reqP = transaction.objectStore("products").openCursor();
     reqP.onsuccess = () => {
-      this.pService.products = reqP.result;
+      let cursor = reqP.result;
+      if(cursor){
+        this.pService.add({
+          id: cursor.primaryKey,
+          ...cursor.value
+        });
+        cursor.continue();
+      }
     };
   };
 
@@ -69,6 +83,45 @@ export class DbService {
         console.log(req.result);
         item.id = req.result;
         sub.next(item);
+        sub.complete();
+      };
+    });
+  }
+
+  clear(store: string) {
+    return new Observable<boolean>(sub => {
+      const transaction = this.db.transaction([store], "readwrite");
+      const req = transaction.objectStore(store).clear();
+      req.onsuccess = ()=>{
+        sub.next(true);
+        sub.complete();
+      };
+      req.onerror = ()=>{
+        console.log(req.error);
+        sub.next(false);
+        sub.complete();
+      };
+    });
+  }
+
+  deleteMultiple(store: string, keys:IDBValidKey[]){
+    const deletes = keys.map(key => this.delete(store, key));
+    return forkJoin(deletes);
+  }
+
+  private delete(store: string, key:IDBValidKey){
+    return new Observable<boolean>(sub => {
+      const transaction = this.db.transaction([store], "readwrite");
+
+      const req = transaction.objectStore(store).delete(key);
+      req.onsuccess = ()=>{
+        console.log(req)
+        sub.next(true);
+        sub.complete();
+      };
+      req.onerror = ()=>{
+        console.log(req.error);
+        sub.next(false);
         sub.complete();
       };
     });

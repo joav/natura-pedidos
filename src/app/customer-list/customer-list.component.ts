@@ -27,13 +27,15 @@ export class CustomerListComponent implements OnInit {
   ngOnInit() {}
 
   add() {
-    this.cService.add(this.customer);
-    this.db.add("customers", this.customer).subscribe(c => {
-      console.log(c);
-    });
-    this.customer = {
-      name: ""
-    };
+    if(this.customer.name){
+      this.cService.add(this.customer);
+      this.db.add("customers", this.customer).subscribe(c => {
+        console.log(c);
+      });
+      this.customer = {
+        name: ""
+      };
+    }
   }
 
   addProduct(c: Customer) {

@@ -43,4 +43,9 @@ export class ProductService {
         )
       : this.products;
   }
+
+  remove(keys:any[]){
+    const products = this.products.filter(p => keys.indexOf(p.id) == -1);
+    this.products = products;
+  }
 }
