@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+}
+td {
+  border-bottom: 1px solid black;
+  padding: 5px;
+}
+thead {
+  font-weight: bold;
+}
+tfoot td:first-child {
+  text-align: right;
+  font-weight: bold;
+}

@@ -1,0 +1,27 @@
+footer {
+  margin-bottom: 15px;
+}
+li {
+  box-sizing: border-box;
+}
+ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+li {
+  width: 33.333%;
+  text-align: center;
+  padding: 10px 0;
+  cursor: pointer;
+}
+li:nth-child(2) {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+li.active span,
+li:not(.active):hover span {
+  border-bottom: 2px solid black;
+}

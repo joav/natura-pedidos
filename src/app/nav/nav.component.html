@@ -1,0 +1,22 @@
+<footer>
+  <ul>
+    <li
+      (click)="tabs.change({customersActive: true})"
+      [class.active]="tabs.customersActive"
+    >
+      <span>Clientes</span>
+    </li>
+    <li
+      (click)="tabs.change({creationActive: true})"
+      [class.active]="tabs.creationActive"
+    >
+      <span>Creación rápida</span>
+    </li>
+    <li
+      (click)="tabs.change({listActive: true})"
+      [class.active]="tabs.listActive"
+    >
+      <span>Lista</span>
+    </li>
+  </ul>
+</footer>

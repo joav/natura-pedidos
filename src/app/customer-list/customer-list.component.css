@@ -1,0 +1,11 @@
+li {
+  padding: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+li a {
+  padding: 0 25px;
+}

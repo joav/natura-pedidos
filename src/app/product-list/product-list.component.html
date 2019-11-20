@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <td>Código</td>
+    <td>Descripción</td>
+    <td>Precio</td>
+    <td>Puntos</td>
+    <td>Cliente</td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of pService.filter()">
+      <td class="code">{{product.code}}</td>
+      <td class="desc">{{product.desc}}</td>
+      <td class="price">{{product.price}}</td>
+      <td class="price">{{product.points}}</td>
+      <td class="customer">{{product.customer.name}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <td colspan="2">Total</td>
+    <td>{{pService.total()}}</td>
+    <td>{{pService.totalPoints()}}</td>
+  </tfoot>
+</table>

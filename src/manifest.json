@@ -1,0 +1,33 @@
+{
+  "short_name": "natura-pedidos",
+  "name": "Natura pedidos",
+  "start_url": "/",
+
+  "theme_color": "#FFA040",
+  "background_color": "#ffffff",
+
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/imgs/icons/favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "assets/imgs/icons/favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "assets/imgs/icons/favicon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "assets/imgs/icons/android-icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
