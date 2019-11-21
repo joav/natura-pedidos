@@ -32,9 +32,7 @@ jobs:
         with:
           name: dist
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting:prod
+        uses: jakejarvis/firebase-deploy-action@v0.1.0
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_ID: natura-pedidos
+          FIREBASE_PROJECT_ID: natura-pedidos
