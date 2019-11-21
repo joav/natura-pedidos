@@ -31,11 +31,10 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: dist
-      - name: Show token
-        run: echo ${{ secrets.FIREBASE_TOKEN }}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting:prod
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_ID: natura-pedidos
